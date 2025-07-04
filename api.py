@@ -1,6 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
+from scraper import scrape
 
 class Sheet(BaseModel):
   id: int
@@ -9,10 +10,6 @@ class Sheet(BaseModel):
 
 app = FastAPI()
 
-@app.get("/sheet/{sheet_id}")
-async def read_item(sheet_id: int, q: Union[str, None] = None):
-  return {"message": "Probably fetch a scraped data sheet", "sheet_id": sheet_id, "q": q}
-
-@app.post("/sheet/scrape/")
+@app.get("/scrape/")
 async def rescrape_sheet(url: str, name: str):
-  return {"data": scrape(name, url)}
+  return {"data": await scrape(name, url)}

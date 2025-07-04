@@ -9,7 +9,7 @@ from helper import sheet_to_csv_url
 from helper import parse_money
 from config import (GOOGLE_SHEET_EDIT_URL, FIRM_COL, URL_COL, EXCEL_COLUMNS)
 from helper import map_to_excel
-from save_deals import save_file
+import time
 
 async def scrape(firm_name, url):
   existing_data = []
